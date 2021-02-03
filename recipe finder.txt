@@ -1,0 +1,43 @@
+import pandas as pd
+
+df1 = pd.read_json("train.json") #import the dataset into a dataframe to 
+
+data = df1.to_dict() #converting the df to a dict
+
+
+liked_ingredients = [] #The lists that contain the ingredients we want
+disliked_ingredients = [] #The lists that contain the ingredients we dont want
+
+def like():# This is a function that puts input into a list
+  inglike = input("Enter an ingredient you would like in your recipe: ")#This askes the user their liked ingredients
+  liked_ingredients.append(inglike)
+
+def dislike():# This is a function that puts input into a list
+
+  ingdislike = input("Enter what you don't like: ")#This askes the user their disliked ingredients
+  disliked_ingredients.append(ingdislike)
+
+like_counter = 0# this is a varible that keeps track of the users liked input 
+
+while like_counter < 3:# if there is less than 3 inputs it loops the liked function
+  like()
+  like_counter += 1# this is a like counter to keep track of how many items has been inputed
+
+dislike_counter = 0# this is a varible that keeps track of the users disliked input 
+
+
+while dislike_counter < 2:#if there is less than 2 inputs it loops the disliked function
+  dislike()#
+  dislike_counter += 1# this is a like counter to keep track of how many items has been inputed
+def search_data():
+for u in data['id']:#search the ID's in the dataset 
+    
+  for i in liked_ingredients:#search the dataset for the user liked ingredients
+    if i in data['ingredients'][u] and t not in disliked_ingredients:
+      print("the cuisine type is: ", data['cuisine'][u], "the id for the recommended recipe is: ", data['id'][u], "The liked ingredient included in the recipe is: ", i)
+      
+search_data()
+
+      
+print("The things you do like: ",liked_ingredients)# prints the users liked ingredients
+print("The things you don't like: ", disliked_ingredients)# prints the users disliked ingredients
